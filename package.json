@@ -1,0 +1,22 @@
+{
+  "name": "booked-backend",
+  "version": "1.0.0",
+  "description": "Backend Application for Booked",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/armostheus/booked-backend.git"
+  },
+  "author": "armostheus",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/armostheus/booked-backend/issues"
+  },
+  "homepage": "https://github.com/armostheus/booked-backend#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
