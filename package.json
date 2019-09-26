@@ -19,6 +19,7 @@
   "homepage": "https://github.com/armostheus/booked-backend#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "nodemon": "^1.19.2"
+    "nodemon": "^1.19.2",
+    "sqlite3": "^4.1.0"
   }
 }
