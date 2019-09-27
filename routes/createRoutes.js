@@ -1,10 +1,23 @@
 const express = require('express')
 const router = express.Router()
+const PersonalBooking = require('../models/PersonalBooking') 
 
 //Routes for create APIs
 router.post('/personalBooking', (req,res)=>{
-    console.log(req.params);
-    res.send('I will create a personal booking for you');
+    const personalBooking = new PersonalBooking({
+        user : req.body.user
+    });
+    console.log(req.body.user);
+    personalBooking.save((err,data)=>{
+        if(err) res.send(err);
+        res.json(data)
+    });
+    /* .then(data => {
+        res.json(data)
+    })
+    .catch(err => {
+        res.json({message : err})
+    }) */
 });
 
 router.post('/groupBooking', (req,res)=>{
