@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const PersonalBooking = require('../models/PersonalBooking') 
+const GroupBooking = require('../models/GroupBooking')
 
 //Routes for create APIs
 router.post('/personalBooking', (req,res)=>{
@@ -26,8 +27,26 @@ router.post('/personalBooking', (req,res)=>{
 });
 
 router.post('/groupBooking', (req,res)=>{
-    console.log(req.params);
-    res.send('I will create a group booking for you');
+    const groupBooking = new GroupBooking({
+        user : req.body.user,
+        date : new Date(req.body.date),
+        startTime : new Date(req.body.startTime),
+        endTime : new Date(req.body.endTime),
+        title : req.body.title,
+        private : req.body.private,
+        description : req.body.description,
+        reminder : req.body.reminder,
+        reminderTime : new Date(req.body.reminderTime),
+        groupMembers : req.body.groupMembers
+    });
+    console.log(req.body.user);
+    groupBooking.save()
+     .then(data => {
+        res.json(data)
+    })
+    .catch(err => {
+        res.json({message : err})
+    }) 
 });
 
 router.post('/event', (req,res)=>{
