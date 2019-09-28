@@ -2,6 +2,7 @@ const express = require('express')
 const router = express.Router()
 const PersonalBooking = require('../models/PersonalBooking') 
 const GroupBooking = require('../models/GroupBooking')
+const Events = require('../models/Events')
 
 //Routes for create APIs
 router.post('/personalBooking', (req,res)=>{
@@ -16,7 +17,6 @@ router.post('/personalBooking', (req,res)=>{
         reminder : req.body.reminder,
         reminderTime : new Date(req.body.reminderTime)
     });
-    console.log(req.body.user);
     personalBooking.save()
      .then(data => {
         res.json(data)
@@ -39,7 +39,6 @@ router.post('/groupBooking', (req,res)=>{
         reminderTime : new Date(req.body.reminderTime),
         groupMembers : req.body.groupMembers
     });
-    console.log(req.body.user);
     groupBooking.save()
      .then(data => {
         res.json(data)
@@ -50,8 +49,19 @@ router.post('/groupBooking', (req,res)=>{
 });
 
 router.post('/event', (req,res)=>{
-    console.log(req.body);
-    res.send('I will create a new event for you');
+    const event = new Events({
+        user : req.body.user,
+        title : req.body.title,
+        description : req.body.description,
+        eventName : req.body.eventName
+    });
+    event.save()
+    .then(data => {
+        res.json(data)
+    })
+    .catch(err => {
+        res.json({message : err})
+    })
 });
 
 router.post('/group', (req,res)=>{
