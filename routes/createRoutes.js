@@ -3,6 +3,7 @@ const router = express.Router()
 const PersonalBooking = require('../models/PersonalBooking') 
 const GroupBooking = require('../models/GroupBooking')
 const Events = require('../models/Events')
+const Groups = require('../models/Groups')
 
 //Routes for create APIs
 router.post('/personalBooking', (req,res)=>{
@@ -65,8 +66,20 @@ router.post('/event', (req,res)=>{
 });
 
 router.post('/group', (req,res)=>{
-    console.log(req.params);
-    res.send('I will create a group for you');
+    const groups = new Groups({
+        owner : req.body.owner,
+        title : req.body.title,
+        description : req.body.description,
+        groupName : req.body.groupName,
+        groupMembers : req.body.groupMembers
+    });
+    groups.save()
+    .then(data => {
+        res.json(data)
+    })
+    .catch(err => {
+        res.json({message : err})
+    })
 });
 
 module.exports = router
