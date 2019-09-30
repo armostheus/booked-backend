@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+const cors = require('cors')
 const createRoutes = require('./routes/createRoutes')
 const fetchRoutes = require('./routes/fetchRoutes')
 const exitRoutes = require('./routes/exitRoutes')
@@ -18,6 +19,9 @@ let db = new sqlite3.Database('./booked.db', (err) => {
 
 app.use(express.json()) // for parsing application/json
 app.use(express.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+app.use(cors({
+    origin: 'http://localhost:3000'
+}))
 
 app.use('/create', createRoutes);
 app.use('/fetch', fetchRoutes);

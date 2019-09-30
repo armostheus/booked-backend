@@ -6,6 +6,7 @@ const PersonalBooking = require('../models/PersonalBooking')
 router.post('/yearBooking', (req,res)=>{
     PersonalBooking.find({date: { $gte: `${req.body.year}-01-01T00:00:00.000Z`, $lte: `${req.body.year}-12-31T23:59:59.999Z` }}, (err,docs) => {
         if(err) res.send(err);
+        console.log(`/yearBooking called with year ${req.body.year}`)
         res.send(docs)
     });
 });
