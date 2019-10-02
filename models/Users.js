@@ -1,5 +1,28 @@
 const mongoose = require('mongoose')
 
+const FriendDetail = mongoose.Schema({
+    friendId:{
+        type : String,
+        required : true
+    },
+    friendUser:{
+        type:String,
+        required : true
+    },
+    friendFirstName:{
+        type:String,
+        required:true
+    },
+    friendMiddleName:{
+        type:String,
+        required:false
+    },
+    friendLastName:{
+        type:String,
+        required:false
+    }
+})
+
 const UsersSchema = mongoose.Schema({
     user:{
         type:String,
@@ -20,6 +43,10 @@ const UsersSchema = mongoose.Schema({
     emailId:{
         type:String,
         required:true
+    },
+    friendList:{
+        type:[FriendDetail],
+        required:false
     }
 });
 

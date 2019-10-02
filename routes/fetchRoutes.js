@@ -11,6 +11,17 @@ router.post('/yearBooking', (req,res)=>{
     });
 });
 
+router.post('/friendList', (req, res)=>{
+    UserDetails.find({user : req.body.user})
+        .select('firendList')
+        .exec((err, docs) => {
+            if(err) res.send(err);
+            res.send(docs)
+        })
+        //Need to develop create/user route to create models. Adding friends to your user.
+        
+});
+
 router.post('/yourBooking', (req,res)=>{
     console.log(req.params);
     res.send('I will give you bookings created by you');
