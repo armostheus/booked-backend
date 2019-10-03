@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const PersonalBooking = require('../models/PersonalBooking')
+const UserDetails = require('../models/Users')
 
 //Routes for Fetch API
 router.post('/yearBooking', (req,res)=>{
@@ -12,8 +13,8 @@ router.post('/yearBooking', (req,res)=>{
 });
 
 router.post('/friendList', (req, res)=>{
-    UserDetails.find({user : req.body.user})
-        .select('firendList')
+    UserDetails.findOne({user : req.body.user})
+        .select('friendList')
         .exec((err, docs) => {
             if(err) res.send(err);
             res.send(docs)
