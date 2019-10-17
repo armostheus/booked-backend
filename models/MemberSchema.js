@@ -5,17 +5,19 @@ const MemberSchema = mongoose.Schema({
         type:String,
         requires:true
     },
-    firstName:{
-        type:String,
-        required:true
-    },
-    middleName:{
-        type:String,
-        required:false
-    },
-    lastName:{
-        type:String,
-        required:true
+    name:{
+        first:{
+            type:String,
+            required:true
+        },
+        middle:{
+            type:String,
+            required:false
+        },
+        last:{
+            type:String,
+            required:true
+        }
     }
 });
 

@@ -1,47 +1,33 @@
 const mongoose = require('mongoose')
-
-const FriendDetail = mongoose.Schema({
-    friendUser:{
-        type:String,
-        required : true
-    },
-    friendFirstName:{
-        type:String,
-        required:true
-    },
-    friendMiddleName:{
-        type:String,
-        required:false
-    },
-    friendLastName:{
-        type:String,
-        required:false
-    }
-})
+const MemberSchema = require('../models/MemberSchema')
 
 const UsersSchema = mongoose.Schema({
     user:{
         type:String,
+        unique:true,
         required:true
     },
-    firstName:{
-        type:String,
-        required:true
-    },
-    middleName:{
-        type:String,
-        required:false
-    },
-    lastName:{
-        type:String,
-        required:true
+    name:{
+        first:{
+            type:String,
+            required:true
+        },
+        middle:{
+            type:String,
+            required:false
+        },
+        last:{
+            type:String,
+            required:true
+        }
     },
     emailId:{
         type:String,
+        unique:true,
         required:true
     },
     friendList:{
-        type:[FriendDetail],
+        type:[MemberSchema],
         required:false
     }
 });

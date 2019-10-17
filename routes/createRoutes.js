@@ -31,9 +31,11 @@ router.post('/personalBooking', (req,res)=>{
 router.post('/user', (req,res)=>{
     const user = new Users({
         user : req.body.user,
-        firstName : req.body.firstName,
-        middleName : req.body.middleName,
-        lastName : req.body.lastName,
+        name : {
+            first : req.body.name.first,
+            middle : req.body.name.middle,
+            last : req.body.name.last,
+        },
         emailId : req.body.emailId,
         friendList : req.body.friendList
     });
